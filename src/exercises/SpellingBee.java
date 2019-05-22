@@ -20,18 +20,36 @@ public class SpellingBee {
 	 * word, but if they do not spell it right ask again. The only place that you
 	 * need to write code in is the stuffForYouToDo() method.
 	 */
-	
+
 	void stuffForYouToDo() {
 		// Write your code here...
-		
-		
-		
+		String word = getRandomWord();
+		//System.out.println(word);
+		String answer = null;
+		int number = 0;
+		do {
+			speak("Spell" + word);
+			answer = JOptionPane.showInputDialog("Type the word here:");
+
+			try {
+				while (!answer.equals(word)) {
+					answer = JOptionPane.showInputDialog("Wrong answer. Try again:");
+				}
+				stuffForYouToDo();
+				number++;
+			} catch (NullPointerException e) {
+				int exit = JOptionPane.showConfirmDialog(null, "Do you want to exit the game?");
+				if (exit == 0)
+					System.exit(0);
+			}
+		} while (number == 0);
+
 	}
 
 	public String getRandomWord() {
 		return words.get(new Random().nextInt(lines));
 	}
-	
+
 	public void speak(String words) {
 		SpeechSynthesizer speaker = new SpeechSynthesizer("speaker");
 		speaker.synthesize(words);
