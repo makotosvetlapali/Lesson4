@@ -22,7 +22,7 @@ public class Skyline {
 	}
 
 	private void drawBuilding(int height, boolean pointy) {
-		builder.setPenColor(Color.BLACK);
+		builder.setPenColor(Color.GRAY);
 		builder.setPenWidth(2);
 
 		builder.move(height);
